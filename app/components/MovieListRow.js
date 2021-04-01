@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../res/colors';
 import dimensions from '../res/dimensions';
 import fonts from '../res/fonts';
+import images from '../res/images';
 import { getImageUri } from '../services/utils';
 
 const MovieListRow = ({ item, onRowPress }) => {
+  const [isImageLoading, setIsImageLoading] = useState(false);
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -15,9 +18,12 @@ const MovieListRow = ({ item, onRowPress }) => {
         <View style={styles.imageContainer}>
           <Image
             style={styles.movieThumbnail}
-            source={{
-              uri: getImageUri(item.item.poster_path),
-            }}
+            source={
+              isImageLoading
+                ? { uri: getImageUri(item.item.poster_path) }
+                : images.defaultImage
+            }
+            onLoad={() => setIsImageLoading(true)}
           />
         </View>
         <View style={styles.detailContainer}>

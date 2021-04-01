@@ -4,6 +4,7 @@ import Toast from 'react-native-toast-message';
 import colors from '../res/colors';
 import dimensions from '../res/dimensions';
 import fonts from '../res/fonts';
+import images from '../res/images';
 import strings from '../res/strings';
 import { getMovieDetail } from '../services';
 import NetworkUtils from '../services/NetworkUtils';
@@ -13,6 +14,7 @@ const MovieDetail = ({ route }) => {
   const { id } = route.params;
   const [movieDetail, setMovieDetail] = useState({});
   const [isLoaded, setIsLoaded] = useState(true);
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   useEffect(() => {
     NetworkUtils.isNetworkAvailable().then(connected => {
@@ -46,9 +48,12 @@ const MovieDetail = ({ route }) => {
         <View>
           <Image
             style={styles.banner}
-            source={{
-              uri: getImageUri(movieDetail.poster_path),
-            }}
+            source={
+              isImageLoading
+                ? { uri: getImageUri(movieDetail.poster_path) }
+                : images.defaultImage
+            }
+            onLoad={() => setIsImageLoading(true)}
           />
           <Text style={styles.title}>{movieDetail.title}</Text>
           <Text style={styles.description}>{movieDetail.overview}</Text>
