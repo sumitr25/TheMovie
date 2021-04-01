@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import colors from '../res/colors';
-import fonts from '../res/fonts';
+import dimensions from '../res/dimensions';
 import strings from '../res/strings';
 
 const EmptyListComponent = () => {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     color: colors.black,
-    fontSize: fonts.larger,
+    fontSize: dimensions.larger,
   },
 });
 

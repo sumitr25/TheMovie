@@ -19,23 +19,20 @@ export const createAxiosInstance = baseURL => {
     config => {
       config.params = {
         ...config.params,
-        api_key: 'd93c324cf5b479a5c7d24a876a7824fa',
+        api_key: Config.API_KEY,
       };
-      console.log(config);
+
       return config;
     },
     error => {
-      console.log(error);
       return Promise.reject(error);
     },
   );
   api.interceptors.response.use(
     config => {
-      console.log(config);
       return config;
     },
     error => {
-      console.log(error);
       return Promise.reject(error);
     },
   );
@@ -72,18 +69,7 @@ export const globalUserTokenInterceptor = config => {
   return config;
 };
 
-export const onStatus = (response, expectedStatusOrStatuses, callback) => {
-  const expectedStatuses =
-    expectedStatusOrStatuses instanceof Array
-      ? expectedStatusOrStatuses
-      : [expectedStatusOrStatuses];
-
-  return _.includes(expectedStatuses, response.status)
-    ? callback(response.data)
-    : null;
-};
-
-export const fullUrl = endUrl => {
-  const fullImageUrl = `${Config.IMAGE_URL}${endUrl}`;
-  return fullImageUrl;
+export const getImageUri = endUrl => {
+  const imageUri = `${Config.IMAGE_URL}${endUrl}`;
+  return imageUri;
 };

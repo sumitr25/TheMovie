@@ -9,6 +9,10 @@ const strings = {
     movieDetail: {
       heading: 'Movie Detail',
     },
+    network: {
+      connection: 'Connection Lost',
+      serverError: 'Server error',
+    },
   },
 };
 

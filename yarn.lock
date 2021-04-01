@@ -1005,6 +1005,10 @@
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
 
+"@react-native-community/netinfo@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-6.0.0.tgz#2a4d7190b508dd0c2293656c9c1aa068f6f60a71"
+
 "@react-native/assets@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@react-native/assets/-/assets-1.0.0.tgz#c6f9bf63d274bafc8e970628de24986b30a55c8e"
@@ -5101,6 +5105,12 @@ react-native-safe-area-view@^1.1.1:
 react-native-screens@^2.17.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.18.1.tgz#47b9991c6f762d00d0ed3233e5283d523e859885"
+
+react-native-toast-message@^1.4.9:
+  version "1.4.9"
+  resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-1.4.9.tgz#47f33ac312fe2aee5dbdd4ae14745fa0d354102e"
+  dependencies:
+    prop-types "^15.7.2"
 
 react-native@0.64.0:
   version "0.64.0"

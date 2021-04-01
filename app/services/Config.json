@@ -1,5 +1,6 @@
 {
   "BASE_URL": "https://api.themoviedb.org/3",
   "DEV": false ,
-  "IMAGE_URL": "https://image.tmdb.org/t/p/w500/"
+  "IMAGE_URL": "https://image.tmdb.org/t/p/w500/",
+  "API_KEY": "d93c324cf5b479a5c7d24a876a7824fa"
 }

@@ -1,25 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
+import Toast from 'react-native-toast-message';
 import colors from '../res/colors';
+import dimensions from '../res/dimensions';
 import fonts from '../res/fonts';
+import strings from '../res/strings';
 import { getMovieDetail } from '../services';
-import { fullUrl } from '../services/utils';
+import NetworkUtils from '../services/NetworkUtils';
+import { getImageUri } from '../services/utils';
 
 const MovieDetail = ({ route }) => {
-  const id = route.params;
+  const { id } = route.params;
   const [movieDetail, setMovieDetail] = useState({});
   const [isLoaded, setIsLoaded] = useState(true);
 
   useEffect(() => {
-    getMovieDetail(id.itemId)
-      .then(response => {
-        setIsLoaded(false);
-        setMovieDetail(response.data);
-      })
-      .catch(error => {
-        setIsLoaded(false);
-        console.log(error);
-      });
+    NetworkUtils.isNetworkAvailable().then(connected => {
+      if (connected) {
+        getMovieDetail(id)
+          .then(response => {
+            setIsLoaded(false);
+            setMovieDetail(response.data);
+          })
+          .catch(() => {
+            Toast.show({
+              text1: strings.movie.network.serverError,
+              position: 'bottom',
+              type: 'error',
+            });
+            setIsLoaded(false);
+          });
+      } else {
+        Toast.show({
+          text1: strings.movie.network.connection,
+          position: 'bottom',
+          type: 'error',
+        });
+      }
+    });
   }, []);
 
   return (
@@ -29,7 +47,7 @@ const MovieDetail = ({ route }) => {
           <Image
             style={styles.banner}
             source={{
-              uri: fullUrl(movieDetail.poster_path),
+              uri: getImageUri(movieDetail.poster_path),
             }}
           />
           <Text style={styles.title}>{movieDetail.title}</Text>
@@ -42,6 +60,7 @@ const MovieDetail = ({ route }) => {
           style={styles.activityIndicator}
         />
       )}
+      <Toast ref={ref => Toast.setRef(ref)} />
     </View>
   );
 };
@@ -49,18 +68,18 @@ const MovieDetail = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    paddingHorizontal: fonts.large,
-    paddingVertical: fonts.small,
+    paddingHorizontal: dimensions.large,
+    paddingVertical: dimensions.small,
     flex: 1,
   },
   banner: {
-    height: fonts.bannerHeight,
+    height: dimensions.bannerHeight,
   },
   title: {
     color: colors.black,
     fontWeight: fonts.bold,
-    fontSize: fonts.large,
-    paddingVertical: fonts.small,
+    fontSize: dimensions.large,
+    paddingVertical: dimensions.small,
   },
   description: {
     color: colors.black,

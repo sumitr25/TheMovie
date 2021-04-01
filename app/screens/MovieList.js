@@ -1,15 +1,17 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
+import Toast from 'react-native-toast-message';
 import EmptyListComponent from '../components/EmptyListComponent';
 import LoadMore from '../components/LoadMoreFooter';
 import MovieListRow from '../components/MovieListRow';
 import SearchBar from '../components/SearchBar';
 import { ScreenNames } from '../navigation/ScreenNames';
 import colors from '../res/colors';
-import fonts from '../res/fonts';
+import dimensions from '../res/dimensions';
 import strings from '../res/strings';
 import { getMovieSuggestion } from '../services';
+import NetworkUtils from '../services/NetworkUtils';
 
 const MovieList = () => {
   const initialPage = 1;
@@ -25,19 +27,34 @@ const MovieList = () => {
 
   const fetchMovieList = (query, page) => {
     setIsLoading(true);
-    getMovieSuggestion(query, page)
-      .then(response => {
-        setIsLoading(false);
-        setTotalPageCount(response.data.total_pages);
-        if (page > initialPage) {
-          setMovieList(prev => [...prev, ...response.data.results]);
-        } else {
-          setMovieList(response.data.results);
-        }
-      })
-      .catch(() => {
-        setIsLoading(false);
-      });
+    NetworkUtils.isNetworkAvailable().then(connected => {
+      if (connected) {
+        getMovieSuggestion(query, page)
+          .then(response => {
+            setIsLoading(false);
+            setTotalPageCount(response.data.total_pages);
+            if (page > initialPage) {
+              setMovieList(prev => [...prev, ...response.data.results]);
+            } else {
+              setMovieList(response.data.results);
+            }
+          })
+          .catch(() => {
+            Toast.show({
+              text1: strings.movie.network.serverError,
+              position: 'bottom',
+              type: 'error',
+            });
+            setIsLoading(false);
+          });
+      } else {
+        Toast.show({
+          text1: strings.movie.network.connection,
+          position: 'bottom',
+          type: 'error',
+        });
+      }
+    });
   };
 
   const handleEvent = page => {
@@ -45,8 +62,8 @@ const MovieList = () => {
     setPageNo(page);
   };
 
-  const startNavigation = itemId => {
-    navigate(ScreenNames.MovieDetail, { itemId: itemId });
+  const startNavigation = id => {
+    navigate(ScreenNames.MovieDetail, { id: id });
   };
 
   return (
@@ -81,6 +98,7 @@ const MovieList = () => {
         )}
         ListEmptyComponent={() => <EmptyListComponent />}
       />
+      <Toast ref={ref => Toast.setRef(ref)} />
     </View>
   );
 };
@@ -92,7 +110,7 @@ const styles = StyleSheet.create({
   listContainer: {
     width: '100%',
     backgroundColor: colors.white,
-    paddingHorizontal: fonts.large,
+    paddingHorizontal: dimensions.large,
   },
   activityIndicator: { flex: 1 },
   contentContainerStyle: { flexGrow: 1 },

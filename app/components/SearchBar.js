@@ -8,7 +8,7 @@ import {
   View
 } from 'react-native';
 import colors from '../res/colors';
-import fonts from '../res/fonts';
+import dimensions from '../res/dimensions';
 import images from '../res/images';
 import strings from '../res/strings';
 
@@ -17,7 +17,7 @@ const SearchBar = ({ onTextChange }) => {
 
   const request = debounce(searchText => {
     onTextChange(searchText);
-  }, 500);
+  }, 300);
 
   const debounceRequest = useCallback(searchText => request(searchText), []);
 
@@ -39,15 +39,10 @@ const SearchBar = ({ onTextChange }) => {
         placeholder={strings.movie.movieList.search}
         placeholderTextColor={colors.black}
         value={searchString}
-        onChangeText={query => {
-          onSearchTextChange(query);
-        }}
+        onChangeText={query => onSearchTextChange(query)}
       />
       {searchString.length > 0 ? (
-        <TouchableOpacity
-          onPress={() => {
-            onCrossButtonPressed();
-          }}>
+        <TouchableOpacity onPress={() => onCrossButtonPressed()}>
           <Image style={styles.crossIcon} source={images.crossIcon} />
         </TouchableOpacity>
       ) : null}
@@ -59,24 +54,24 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     width: '100%',
-    paddingVertical: fonts.mini,
-    paddingHorizontal: fonts.small,
-    fontSize: fonts.large,
+    paddingVertical: dimensions.mini,
+    paddingHorizontal: dimensions.small,
+    fontSize: dimensions.large,
     backgroundColor: colors.silver,
     alignItems: 'center',
   },
   searchIcon: {
-    width: fonts.largest,
-    height: fonts.largest,
+    width: dimensions.largest,
+    height: dimensions.largest,
   },
   crossIcon: {
-    width: fonts.larger,
-    height: fonts.larger,
+    width: dimensions.larger,
+    height: dimensions.larger,
   },
   searchBox: {
     color: colors.black,
-    paddingLeft: fonts.mini,
-    fontSize: fonts.large,
+    paddingLeft: dimensions.mini,
+    fontSize: dimensions.large,
     flex: 1,
   },
 });

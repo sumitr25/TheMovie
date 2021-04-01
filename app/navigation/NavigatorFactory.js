@@ -8,33 +8,28 @@ import { ScreenNames } from './ScreenNames';
 
 const Stack = createStackNavigator();
 
+const headerOption = {
+  headerStyle: {
+    backgroundColor: colors.headerColor,
+  },
+  headerTitleStyle: {
+    color: colors.white,
+  },
+  headerTintColor: colors.white,
+};
+
 const Navigation = () => (
   <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen
         name={ScreenNames.MovieList}
         component={MovieList}
-        options={{
-          headerStyle: {
-            backgroundColor: colors.headerColor,
-          },
-          headerTitleStyle: {
-            color: colors.white,
-          },
-        }}
+        options={headerOption}
       />
       <Stack.Screen
         name={ScreenNames.MovieDetail}
         component={MovieDetail}
-        options={{
-          headerStyle: {
-            backgroundColor: colors.headerColor,
-          },
-          headerTitleStyle: {
-            color: colors.white,
-          },
-          headerTintColor: colors.white,
-        }}
+        options={headerOption}
       />
     </Stack.Navigator>
   </NavigationContainer>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../res/colors';
+import dimensions from '../res/dimensions';
 import fonts from '../res/fonts';
-import { fullUrl } from '../services/utils';
+import { getImageUri } from '../services/utils';
 
 const MovieListRow = ({ item, onRowPress }) => {
   return (
@@ -15,7 +16,7 @@ const MovieListRow = ({ item, onRowPress }) => {
           <Image
             style={styles.movieThumbnail}
             source={{
-              uri: fullUrl(item.item.poster_path),
+              uri: getImageUri(item.item.poster_path),
             }}
           />
         </View>
@@ -37,30 +38,30 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     flexDirection: 'row',
-    paddingVertical: fonts.larger,
-    borderBottomWidth: fonts.borderBottomWidth,
+    paddingVertical: dimensions.larger,
+    borderBottomWidth: dimensions.borderBottomWidth,
   },
   imageContainer: {
     backgroundColor: colors.white,
   },
   detailContainer: {
     backgroundColor: colors.white,
-    paddingLeft: fonts.larger,
-    paddingRight: fonts.xLarge,
+    paddingLeft: dimensions.larger,
+    paddingRight: dimensions.xLarge,
   },
   title: {
     color: colors.black,
     fontWeight: fonts.bold,
-    fontSize: fonts.large,
+    fontSize: dimensions.large,
   },
   description: {
     color: colors.black,
-    paddingRight: fonts.large,
+    paddingRight: dimensions.large,
   },
   movieThumbnail: {
-    width: fonts.movieThumbnail,
-    height: fonts.movieThumbnail,
-    borderRadius: fonts.mini,
+    width: dimensions.movieThumbnail,
+    height: dimensions.movieThumbnail,
+    borderRadius: dimensions.mini,
   },
 });
 
