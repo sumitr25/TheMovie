@@ -1,5 +1,5 @@
 ## Description 
-In this application, we are displaying the list of movies and on taping a particular movie we can see the detail of that on the next screen. We also have a search bar to filter the results. We have used Debounce and pagination to enhance the user experience and to ensure that time-consuming tasks do not fire so often, that it stalls the performance of the app.
+In this application, list of movies are displayed and on a tap of particular movie user can see the detail of that on the next screen. Application also have a search bar to filter the results. I have used Debounce and pagination to enhance the user experience and to ensure that time-consuming tasks do not fire so often, that it stalls the performance of the app.
 
 ### Environment setup
  Download node and npm. Make sure node and npm are installed by typing the below commands
@@ -127,7 +127,7 @@ yarn test -- -u
  
 - For linter, I have used - eslint
 - I have used React Hooks and functional components
-- We have done the setup for the unit testing. As we have not 
+- I have done the setup for the unit testing. As we have not 
   dealt with logical operations in the app, so we have just written some 
   superficial unit test cases. We have written 4 test cases for components.
-- We have used Axios for network calls. 
+- I have used Axios for network calls.
