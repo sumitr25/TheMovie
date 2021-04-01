@@ -1,11 +1,42 @@
-import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import MovieListRow from '../components/MovieListRow';
 import SearchBar from '../components/SearchBar';
 import { MockDataList } from '../mock/ListMockData';
+import { ScreenNames } from '../navigation/ScreenNames';
 import colors from '../res/colors';
+import fonts from '../res/fonts';
+import { getMovieDetail, getMovieSuggestion } from '../services';
 
 const MovieList = () => {
+  const { navigate } = useNavigation();
+
+  useEffect(() => {
+    fetchMovieList();
+  }, []);
+
+  const fetchMovieList = () => {
+    getMovieSuggestion('Avenger')
+      .then(response => {
+        console.log('>>>', response);
+      })
+      .catch(error => {
+        console.log('>>>', error);
+      });
+  };
+
+  const startNavigation = listItem => {
+    getMovieDetail('1771')
+      .then(response => {
+        console.log('>>>', response);
+        navigate(ScreenNames.MovieDetail, { item: listItem });
+      })
+      .catch(error => {
+        console.log('>>>', error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <SearchBar
@@ -14,6 +45,7 @@ const MovieList = () => {
         }}
       />
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={MockDataList}
         style={styles.listContainer}
         keyExtractor={item => item.id}
@@ -21,7 +53,7 @@ const MovieList = () => {
           <MovieListRow
             item={item}
             onRowPress={selectedItem => {
-              console.log(selectedItem.id);
+              startNavigation(selectedItem);
             }}
           />
         )}
@@ -37,6 +69,7 @@ const styles = StyleSheet.create({
   listContainer: {
     width: '100%',
     backgroundColor: colors.white,
+    paddingHorizontal: fonts.large,
   },
 });
 
