@@ -4,6 +4,7 @@ const strings = {
       heading: 'Movie List',
       loadingKeyword: 'Avengers',
       search: 'Search...',
+      noData: 'No data found!',
     },
     movieDetail: {
       heading: 'Movie Detail',

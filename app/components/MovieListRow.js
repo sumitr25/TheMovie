@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   movieThumbnail: {
     width: fonts.movieThumbnail,
     height: fonts.movieThumbnail,
+    borderRadius: fonts.mini,
   },
 });
 

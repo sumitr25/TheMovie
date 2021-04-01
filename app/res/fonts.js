@@ -9,7 +9,7 @@ const fonts = {
   xLarge: 50,
   movieThumbnail: 70,
   bannerHeight: 200,
-  borderBottomWidth: 0.2,
+  borderBottomWidth: 0.3,
   thin: '100',
   ultraLight: '200',
   light: '300',
