@@ -1,17 +1,18 @@
-export const smaller = 10;
-export const small = 12;
-export const normal = 14;
-export const large = 16;
-export const larger = 19;
-export const largest = 22;
-export const xLargest = 26;
+const fonts = {
+  smaller: 10,
+  small: 12,
+  normal: 14,
+  large: 16,
+  larger: 19,
+  largest: 22,
+  thin: '100',
+  ultraLight: '200',
+  light: '300',
+  regular: '400',
+  medium: '500',
+  semiBold: '600',
+  bold: '700',
+  heavy: '800',
+};
 
-export const thin = '100';
-export const ultraLight = '200';
-export const light = '300';
-export const regular = '400';
-export const medium = '500';
-export const semibold = '600';
-export const bold = '700';
-export const heavy = '800';
-export const black = '900';
+export default fonts;
