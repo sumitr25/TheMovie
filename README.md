@@ -1,14 +1,24 @@
 ## Description 
-In this application, list of movies are displayed and on a tap of particular movie user can see the detail of that on the next screen. Application also have a search bar to filter the results. I have used Debounce and pagination to enhance the user experience and to ensure that time-consuming tasks do not fire so often, that it stalls the performance of the app.
+In this application, a list of movies is displayed and on a tap of a particular movie, the user can see the detail of that on the next screen. The application also has a search bar to filter the results.
+
+### Note
+- Set up `jest` for unit testing. Added few test cases for the demonstration.
+- Use `Avenger` as a default movie search string as API returns 
+empty response for an empty string.
+- Application currently developed using JS, but for better type
+  and compile-time safety `Typescript` or [Flow](https://flow.org/en/docs/react/) can be used.
+- Use `eslint` For linter.
+- Use `hooks` and `functional` components.
+- Use `axios` for network calls.
+- Use `debounce` and `pagination` to ensure that time-consuming tasks do not fire often, that it stalls the performance of the app.
 
 ### Environment setup
- Download node and npm. Make sure node and npm are installed by typing the below commands
+Setup node. Make sure node is installed by typing the below command:
 
  ```
  node -v
-
- npm -v
  ```
+
 After installing the node in your system, you  can install react native by typing the following command in the terminal
 
 ```
@@ -25,7 +35,10 @@ commands -
 cd "~/TheMovie"
 yarn
 cd npx pod-install
-npx react-native run-ios 
+```
+
+```
+npm run ios 
 
 or
 
@@ -40,7 +53,10 @@ Then run the below command -
 ```sh
 cd "~/TheMovie"
 yarn
-npx react-native run-android 
+```
+
+```
+npm run android 
 
 or 
 
@@ -116,18 +132,7 @@ yarn test -- -u
 - navigation: Application Navigation stack.
 - services: Contains networking files like config, utils(Axios calls), etc.
 - assets: Contains images used in the project.
-- coverage: It is auto-generated folder while we run test cases
 - jest: Contain setup file to run test cases.
 
-
-### Note
-
-- Application currently developed using JS, but for better type
- and compile-time safety Typescript can be used
- 
-- For linter, I have used - eslint
-- I have used React Hooks and functional components
-- I have done the setup for the unit testing. As we have not 
-  dealt with logical operations in the app, so we have just written some 
-  superficial unit test cases. We have written 4 test cases for components.
-- I have used Axios for network calls.
+### Demo
+![Demo image](https://github.com/sumitr25/TheMovie/blob/main/demo.gif)

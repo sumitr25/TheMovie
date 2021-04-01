@@ -1,4 +1,4 @@
 export const ScreenNames = {
-  MovieList: 'MovieList',
+  MovieList: 'TheMovie',
   MovieDetail: 'MovieDetail',
 };

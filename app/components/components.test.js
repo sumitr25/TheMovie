@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme';
 import React from 'react';
+import MovieListRow from '../screens/movie-list/MovieListRow';
 import EmptyListComponent from './EmptyListComponent';
 import LoadMoreFooter from './LoadMoreFooter';
-import MovieListRow from './MovieListRow';
 import SearchBar from './SearchBar';
 
 describe('SearchBar', () => {

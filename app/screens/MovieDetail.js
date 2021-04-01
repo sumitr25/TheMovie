@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import Toast from 'react-native-toast-message';
-import colors from '../res/colors';
-import dimensions from '../res/dimensions';
-import fonts from '../res/fonts';
-import images from '../res/images';
-import strings from '../res/strings';
-import { getMovieDetail } from '../services';
-import NetworkUtils from '../services/NetworkUtils';
-import { getImageUri } from '../services/utils';
+import { colors } from '../res/colors';
+import { dimensions } from '../res/dimensions';
+import { fontWeight } from '../res/fontWeight';
+import { images } from '../res/images';
+import { strings } from '../res/strings';
+import { getMovieDetail } from '../services/network/Helper';
+import { getImageUri } from '../services/network/Manager';
+import NetworkUtils from '../services/network/Utils';
 
 const MovieDetail = ({ route }) => {
   const { id } = route.params;
@@ -54,14 +54,18 @@ const MovieDetail = ({ route }) => {
                 : images.defaultImage
             }
             onLoad={() => setIsImageLoading(true)}
+            defaultSource={images.defaultImage}
+            resizeMode={'cover'}
           />
-          <Text style={styles.title}>{movieDetail.title}</Text>
-          <Text style={styles.description}>{movieDetail.overview}</Text>
+          <View style={styles.contentContainer}>
+            <Text style={styles.title}>{movieDetail.title}</Text>
+            <Text style={styles.description}>{movieDetail.overview}</Text>
+          </View>
         </View>
       ) : (
         <ActivityIndicator
           size={'large'}
-          color={colors.headerColor}
+          color={colors.darkGreen}
           style={styles.activityIndicator}
         />
       )}
@@ -73,16 +77,18 @@ const MovieDetail = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    paddingHorizontal: dimensions.large,
-    paddingVertical: dimensions.small,
     flex: 1,
   },
   banner: {
     height: dimensions.bannerHeight,
   },
+  contentContainer: {
+    paddingHorizontal: dimensions.large,
+    paddingVertical: dimensions.small,
+  },
   title: {
     color: colors.black,
-    fontWeight: fonts.bold,
+    fontWeight: fontWeight.bold,
     fontSize: dimensions.large,
     paddingVertical: dimensions.small,
   },

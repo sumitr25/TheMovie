@@ -1,10 +1,11 @@
-const strings = {
+export const strings = {
   movie: {
     movieList: {
       heading: 'Movie List',
-      loadingKeyword: 'Avengers',
       search: 'Search...',
-      noData: 'No data found!',
+      noData: 'No movies found for the search.',
+      releaseDate: 'Release Date',
+      ratings: 'Ratings',
     },
     movieDetail: {
       heading: 'Movie Detail',
@@ -15,5 +16,3 @@ const strings = {
     },
   },
 };
-
-export default strings;

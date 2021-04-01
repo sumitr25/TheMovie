@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import colors from '../res/colors';
-import dimensions from '../res/dimensions';
-import strings from '../res/strings';
+import { colors } from '../res/colors';
+import { dimensions } from '../res/dimensions';
+import { strings } from '../res/strings';
 
 const EmptyListComponent = () => {
   return (

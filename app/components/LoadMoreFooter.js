@@ -1,8 +1,8 @@
 import React from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, View } from 'react-native';
-import colors from '../res/colors';
-import dimensions from '../res/dimensions';
-import fonts from '../res/fonts';
+import { colors } from '../res/colors';
+import { dimensions } from '../res/dimensions';
+import { fontWeight } from '../res/fontWeight';
 
 const { width } = Dimensions.get('window');
 
@@ -11,13 +11,13 @@ const LoadMoreFooter = ({ isLoading }) =>
 
 const RenderFooterLoader = () => (
   <View style={styles.loadMoreView}>
-    <ActivityIndicator animating size="large" color={colors.headerColor} />
+    <ActivityIndicator animating size="large" color={colors.darkGreen} />
   </View>
 );
 
 const styles = StyleSheet.create({
   loadMoreView: {
-    height: fonts.xLarge,
+    height: fontWeight.xLarge,
     width,
     alignSelf: 'center',
     justifyContent: 'center',
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   loadMoreText: {
     alignSelf: 'center',
-    color: colors.headerColor,
+    color: colors.darkGreen,
     fontSize: dimensions.large,
   },
 });

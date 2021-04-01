@@ -1,4 +1,4 @@
-const dimensions = {
+export const dimensions = {
   mini: 5,
   smaller: 10,
   small: 12,
@@ -11,5 +11,3 @@ const dimensions = {
   bannerHeight: 200,
   borderBottomWidth: 0.3,
 };
-
-export default dimensions;
