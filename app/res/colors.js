@@ -6,6 +6,7 @@ const colors = {
   darkGray: '#5E5E5E',
   itemBackground: '#263138',
   black: '#000000',
+  silver: '#f9f9f9',
 };
 
 export default colors;

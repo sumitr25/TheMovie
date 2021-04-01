@@ -1,13 +1,18 @@
 import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import MovieListRow from '../components/MovieListRow';
+import SearchBar from '../components/SearchBar';
 import { MockDataList } from '../mock/ListMockData';
 import colors from '../res/colors';
-import fonts from '../res/fonts';
 
 const MovieList = () => {
   return (
-    <View>
+    <View style={styles.container}>
+      <SearchBar
+        onTextChange={searchText => {
+          console.log('>>>' + searchText);
+        }}
+      />
       <FlatList
         data={MockDataList}
         style={styles.listContainer}
@@ -26,12 +31,12 @@ const MovieList = () => {
 };
 
 const styles = StyleSheet.create({
-  listContainer: {
+  container: {
     flex: 1,
+  },
+  listContainer: {
     width: '100%',
     backgroundColor: colors.white,
-    position: 'absolute',
-    top: fonts.large,
   },
 });
 
