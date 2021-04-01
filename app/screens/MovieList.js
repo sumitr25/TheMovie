@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import strings from '../res/strings';
 
 const MovieList = () => {
   return (
     <View style={styles.container}>
-      <Text>Movie List</Text>
+      <Text>{strings.movie.movieList.heading}</Text>
     </View>
   );
 };

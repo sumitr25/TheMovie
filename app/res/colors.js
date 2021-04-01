@@ -1,0 +1,12 @@
+export const baseBackground = '#1C272C';
+export const white = '#ffffff';
+export const green = '#0da935';
+export const lightGray = '#C7C7C7';
+export const darkGray = '#5E5E5E';
+export const itemBackground = '#263138';
+export const orderGreen = '#89b439';
+export const orderRed = '#503136';
+export const tradeGreen = '#245E3F';
+export const tradeRed = '#70393F';
+export const backgroundGreen = '#1A4838';
+export const backgroundRed = '#503136';
