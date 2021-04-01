@@ -5,7 +5,6 @@ import fonts from '../res/fonts';
 import { fullUrl } from '../services/utils';
 
 const MovieListRow = ({ item, onRowPress }) => {
-
   return (
     <TouchableOpacity
       onPress={() => {
@@ -14,7 +13,7 @@ const MovieListRow = ({ item, onRowPress }) => {
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
-            style={styles.logo}
+            style={styles.movieThumbnail}
             source={{
               uri: fullUrl(item.item.poster_path),
             }}
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     flexDirection: 'row',
     paddingVertical: fonts.larger,
-    borderBottomWidth: 0.2,
+    borderBottomWidth: fonts.borderBottomWidth,
   },
   imageContainer: {
     backgroundColor: colors.white,
@@ -58,9 +57,9 @@ const styles = StyleSheet.create({
     color: colors.black,
     paddingRight: fonts.large,
   },
-  logo: {
-    width: 70,
-    height: 70,
+  movieThumbnail: {
+    width: fonts.movieThumbnail,
+    height: fonts.movieThumbnail,
   },
 });
 

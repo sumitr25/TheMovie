@@ -39,8 +39,8 @@ const SearchBar = ({ onTextChange }) => {
         placeholder={strings.movie.movieList.search}
         placeholderTextColor={colors.black}
         value={searchString}
-        onChangeText={text => {
-          onSearchTextChange(text);
+        onChangeText={query => {
+          onSearchTextChange(query);
         }}
       />
       {searchString.length > 0 ? (

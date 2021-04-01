@@ -24,9 +24,8 @@ const MovieList = () => {
         setIsLoaded(false);
         setMovieList(response.data.results);
       })
-      .catch(error => {
+      .catch(() => {
         setIsLoaded(false);
-        console.log(error);
       });
   };
 

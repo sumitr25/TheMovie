@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
   },
   activityIndicator: {
     flex: 1,
-    height: '100%',
   },
 });
 
