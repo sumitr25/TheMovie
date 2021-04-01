@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.12% </span>
+                <span class="strong">94.74% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/17</span>
+                <span class='fraction'>18/19</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.89% </span>
+                <span class="strong">90.91% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/9</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
@@ -117,12 +117,22 @@
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,7 +156,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,30 +190,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../res/colors';
+import dimensions from '../res/dimensions';
 import fonts from '../res/fonts';
+import { getImageUri } from '../services/utils';
 &nbsp;
 const MovieListRow = ({ item, onRowPress }) =&gt; {
   return (
     &lt;TouchableOpacity
       onPress={() =&gt; {<span class="fstat-no" title="function not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        onRowPress(item);</span>
+<span class="cstat-no" title="statement not covered" >        onRowPress(item.item);</span>
       }}&gt;
       &lt;View style={styles.container}&gt;
         &lt;View style={styles.imageContainer}&gt;
           &lt;Image
-            style={styles.logo}
+            style={styles.movieThumbnail}
             source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
+              uri: getImageUri(item.item.poster_path),
             }}
           /&gt;
         &lt;/View&gt;
         &lt;View style={styles.detailContainer}&gt;
-          &lt;Text style={styles.title}&gt;Title&lt;/Text&gt;
-          &lt;Text style={styles.description}&gt;description&lt;/Text&gt;
+          &lt;Text style={styles.title} numberOfLines={1}&gt;
+            {item.item.title}
+          &lt;/Text&gt;
+          &lt;Text numberOfLines={3} style={styles.description}&gt;
+            {item.item.overview}
+          &lt;/Text&gt;
         &lt;/View&gt;
       &lt;/View&gt;
     &lt;/TouchableOpacity&gt;
@@ -211,28 +233,30 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     flexDirection: 'row',
-    paddingHorizontal: fonts.normal,
-    paddingVertical: fonts.larger,
-    borderBottomWidth: 0.2,
+    paddingVertical: dimensions.larger,
+    borderBottomWidth: dimensions.borderBottomWidth,
   },
   imageContainer: {
     backgroundColor: colors.white,
   },
   detailContainer: {
     backgroundColor: colors.white,
-    paddingLeft: fonts.larger,
+    paddingLeft: dimensions.larger,
+    paddingRight: dimensions.xLarge,
   },
   title: {
     color: colors.black,
     fontWeight: fonts.bold,
-    fontSize: fonts.normal,
+    fontSize: dimensions.large,
   },
   description: {
     color: colors.black,
+    paddingRight: dimensions.large,
   },
-  logo: {
-    width: 66,
-    height: 66,
+  movieThumbnail: {
+    width: dimensions.movieThumbnail,
+    height: dimensions.movieThumbnail,
+    borderRadius: dimensions.mini,
   },
 });
 &nbsp;
@@ -244,7 +268,7 @@ export default MovieListRow;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Mar 30 2021 20:51:02 GMT+0530 (India Standard Time)
+                at Wed Mar 31 2021 20:13:21 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
