@@ -1,26 +1,25 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import colors from '../res/colors';
 import fonts from '../res/fonts';
+import { fullUrl } from '../services/utils';
 
 const MovieDetail = ({ route }) => {
-  const { id } = route.params;
-
+  const { item } = route.params;
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.banner}
-        source={{
-          uri: 'https://reactnative.dev/img/tiny_logo.png',
-        }}
-      />
+    <ScrollView style={styles.container}>
+      <View>
+        <Image
+          style={styles.banner}
+          source={{
+            uri: fullUrl(item.backdrop_path),
+          }}
+        />
 
-      <Text style={styles.title}>Title</Text>
-      <Text style={styles.description}>
-        If you use react-navigation v5, you should import hooks from
-        react-navigation v5 directly, and should not add this project.
-      </Text>
-    </View>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.description}>{item.overview}</Text>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
   title: {
     color: colors.black,
     fontWeight: fonts.bold,
-    fontSize: fonts.normal,
+    fontSize: fonts.large,
     paddingVertical: fonts.small,
   },
   description: {

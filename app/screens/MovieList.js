@@ -1,39 +1,39 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import MovieListRow from '../components/MovieListRow';
 import SearchBar from '../components/SearchBar';
-import { MockDataList } from '../mock/ListMockData';
 import { ScreenNames } from '../navigation/ScreenNames';
 import colors from '../res/colors';
 import fonts from '../res/fonts';
+import strings from '../res/strings';
 import { getMovieDetail, getMovieSuggestion } from '../services';
 
 const MovieList = () => {
   const { navigate } = useNavigation();
+  const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
-    fetchMovieList();
+    fetchMovieList(strings.movie.movieList.loadingKeyword);
   }, []);
 
-  const fetchMovieList = () => {
-    getMovieSuggestion('Avenger')
+  const fetchMovieList = query => {
+    getMovieSuggestion(query)
       .then(response => {
-        console.log('>>>', response);
+        setMovieList(response.data.results);
       })
       .catch(error => {
-        console.log('>>>', error);
+        console.log(error);
       });
   };
 
-  const startNavigation = listItem => {
-    getMovieDetail('1771')
+  const startNavigation = itemId => {
+    getMovieDetail(itemId)
       .then(response => {
-        console.log('>>>', response);
-        navigate(ScreenNames.MovieDetail, { item: listItem });
+        navigate(ScreenNames.MovieDetail, { item: response.data });
       })
       .catch(error => {
-        console.log('>>>', error);
+        console.log(error);
       });
   };
 
@@ -41,19 +41,20 @@ const MovieList = () => {
     <View style={styles.container}>
       <SearchBar
         onTextChange={searchText => {
-          console.log('>>>' + searchText);
+          fetchMovieList(searchText);
+          console.log('>>>onTextChange' + searchText);
         }}
       />
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={MockDataList}
+        data={movieList}
         style={styles.listContainer}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
         renderItem={item => (
           <MovieListRow
             item={item}
             onRowPress={selectedItem => {
-              startNavigation(selectedItem);
+              startNavigation(selectedItem.id);
             }}
           />
         )}

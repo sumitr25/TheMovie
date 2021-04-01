@@ -1,4 +1,5 @@
 {
   "BASE_URL": "https://api.themoviedb.org/3",
-  "DEV": false 
+  "DEV": false ,
+  "IMAGE_URL": "https://image.tmdb.org/t/p/w500/"
 }

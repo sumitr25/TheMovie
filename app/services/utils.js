@@ -1,6 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 import { Alert } from 'react-native';
+import * as Config from './Config.json';
 
 export const createAxiosInstance = baseURL => {
   const api = axios.create({
@@ -80,4 +81,9 @@ export const onStatus = (response, expectedStatusOrStatuses, callback) => {
   return _.includes(expectedStatuses, response.status)
     ? callback(response.data)
     : null;
+};
+
+export const fullUrl = endUrl => {
+  const fullImageUrl = `${Config.IMAGE_URL}${endUrl}`;
+  return fullImageUrl;
 };

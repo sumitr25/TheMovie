@@ -10,13 +10,14 @@ import {
 import colors from '../res/colors';
 import fonts from '../res/fonts';
 import images from '../res/images';
+import strings from '../res/strings';
 
 const SearchBar = ({ onTextChange }) => {
   const [searchString, setSearchString] = useState('');
 
   const request = debounce(searchText => {
     onTextChange(searchText);
-  }, 1000);
+  }, 500);
 
   const debounceRequest = useCallback(searchText => request(searchText), []);
 
@@ -27,6 +28,7 @@ const SearchBar = ({ onTextChange }) => {
 
   const onCrossButtonPressed = () => {
     setSearchString('');
+    onTextChange(strings.movie.movieList.loadingKeyword);
   };
 
   return (
@@ -34,7 +36,7 @@ const SearchBar = ({ onTextChange }) => {
       <Image style={styles.searchIcon} source={images.searchIcon} />
       <TextInput
         style={styles.searchBox}
-        placeholder={'Search...'}
+        placeholder={strings.movie.movieList.search}
         placeholderTextColor={colors.black}
         value={searchString}
         onChangeText={text => {
