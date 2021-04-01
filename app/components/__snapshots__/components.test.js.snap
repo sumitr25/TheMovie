@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieListRow Rendering should match to snapshot 1`] = `ShallowWrapper {}`;
+
+exports[`SearchBar Rendering should match to snapshot 1`] = `ShallowWrapper {}`;
