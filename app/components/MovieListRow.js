@@ -5,6 +5,7 @@ import fonts from '../res/fonts';
 import { fullUrl } from '../services/utils';
 
 const MovieListRow = ({ item, onRowPress }) => {
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
   detailContainer: {
     backgroundColor: colors.white,
     paddingLeft: fonts.larger,
+    paddingRight: fonts.xLarge,
   },
   title: {
     color: colors.black,

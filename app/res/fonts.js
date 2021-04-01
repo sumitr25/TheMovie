@@ -6,6 +6,8 @@ const fonts = {
   large: 16,
   larger: 19,
   largest: 22,
+  xLarge: 50,
+  bannerHeight: 200,
   thin: '100',
   ultraLight: '200',
   light: '300',
